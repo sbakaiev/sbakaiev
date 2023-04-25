@@ -15,6 +15,6 @@ Scenario('register new user',  ({ I, basePage, registerPage }) => {
     registerPage.verifyRegisterPage();
     registerPage.fillNewUserForm(NEW_USER);
     registerPage.confirmPrivacy();
-    I.submitForm();
-    I.see('Your Account Has Been Created!')
+    basePage.submitForm();
+    registerPage.verifyRegistrationSuccess();
 });

@@ -12,6 +12,10 @@ module.exports = {
   verifyRegisterPage() {
     I.see('Register Account');
   },
+  
+  verifyRegistrationSuccess() {
+    I.see('Your Account Has Been Created!')
+  },
 
   fillNewUserForm(user) {
     I.fillField(this.firstNameField, user.firstName);
@@ -25,4 +29,4 @@ module.exports = {
   confirmPrivacy() {
     I.click(this.confirmPrivacyControl);
   }
-  }
+}
