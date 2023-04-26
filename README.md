@@ -1,16 +1,27 @@
-### Hi there 👋
+# QA Automation Tests
 
-<!--
-**sbakaiev/sbakaiev** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Description
 
-Here are some ideas to get you started:
+- Cover site with tests
+- Here shows base test examples.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## List
+- [Installation](#installation)
+- [Usage](#usage)
+
+## Installation
+- clone repo
+- open project path in cmd
+- run `npm run i`
+
+## Usage
+- `npm run codeceptjs` - run all tests
+- `npm run codeceptjs:headless` - run all tests without browser
+
+---
+
+🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+
+
+![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
+[![Latest Test Result](https://github.com/adudyak/js4_adudyak/actions/workflows/action.yml/badge.svg)](https://github.com/adudyak/js4_adudyak/actions/workflows/action.yml)
