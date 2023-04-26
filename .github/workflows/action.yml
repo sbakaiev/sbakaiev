@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       branch: 
-        default: 'buy_test'
+        default: 'main'
 
 concurrency:
   group: ${{ github.ref }}

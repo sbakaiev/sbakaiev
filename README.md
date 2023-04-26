@@ -24,4 +24,4 @@
 
 
 ![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-[![Latest Test Result](https://github.com/adudyak/js4_adudyak/actions/workflows/action.yml/badge.svg)](https://github.com/adudyak/js4_adudyak/actions/workflows/action.yml)
+![Latest Test Result](https://github.com/sbakaiev/sbakaiev/actions/workflows/action.yml/badge.svg)
