@@ -7,6 +7,7 @@ module.exports = {
   cart: '//*[@id="cart"]/button',
   cartProducts: { xpath: '//*[@id="cart"]/ul/li[@class="product"]' },
   cleanCart: { xpath: '//li[@class="product"][1]//button[2]' },
+  usdRate: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&json',
   checkout: {
     paymentAddress: { xpath: '//*[@id="button-payment-address"]' },
     shippingAddress: { xpath: '//*[@id="button-shipping-address"]' },
@@ -51,5 +52,13 @@ module.exports = {
 
   doConfirmOrder() {
     I.click(this.checkout.submitOrder)
+  },
+
+  async doConvertToUah(price) {
+    const response = await I.sendGetRequest(this.usdRate)
+    I.seeResponseCodeIs(200)
+    const usdRate = response.data[0].rate
+
+    return price * usdRate;
   }
 }

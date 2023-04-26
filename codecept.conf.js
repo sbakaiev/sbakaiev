@@ -20,11 +20,18 @@ exports.config = {
       browser: 'chromium'
     },
     Transform: {
-      require: './helpers/transform_helper.js',
+      require: './helpers/transform.js',
     },
     ChaiWrapper: {
       "require": "codeceptjs-chai"
-    }
+    },
+    REST: {
+      defaultHeaders: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    },
+    JSONResponse: {},
   },
   include: {
     I: './steps_file.js',
