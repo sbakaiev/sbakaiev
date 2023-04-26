@@ -18,12 +18,27 @@ exports.config = {
       url: 'http://opencart.qatestlab.net/index.php',
       show: true,
       browser: 'chromium'
-    }
+    },
+    Transform: {
+      require: './helpers/transform.js',
+    },
+    ChaiWrapper: {
+      "require": "codeceptjs-chai"
+    },
+    REST: {
+      defaultHeaders: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    },
+    JSONResponse: {},
   },
   include: {
     I: './steps_file.js',
     basePage: "./pages/base.js",
-    registerPage: "./pages/register.js"
+    registerPage: "./pages/register.js",
+    productPage: "./pages/product.js",
+    checkoutPage: "./pages/checkout.js"
   },
   name: 'sbakaiev'
 }

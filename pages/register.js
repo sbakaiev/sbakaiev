@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I } = inject()
 
 module.exports = {
   firstNameField: { xpath: '//*[@id="input-firstname"]' },
@@ -10,7 +10,7 @@ module.exports = {
   confirmPrivacyControl: {xpath: '//*[@id="content"]/form/div/div/input[1]'},
 
   verifyRegisterPage() {
-    I.see('Register Account');
+    I.see('Register Account')
   },
   
   verifyRegistrationSuccess() {
@@ -18,15 +18,15 @@ module.exports = {
   },
 
   fillNewUserForm(user) {
-    I.fillField(this.firstNameField, user.firstName);
-    I.fillField(this.lastNameField, user.lastName);
-    I.fillField(this.emailField, user.email);
-    I.fillField(this.phoneField, user.phone);
-    I.fillField(this.passwordField, user.password);
-    I.fillField(this.passwordConfirmField, user.password);
+    I.fillField(this.firstNameField, user.firstName)
+    I.fillField(this.lastNameField, user.lastName)
+    I.fillField(this.emailField, user.email)
+    I.fillField(this.phoneField, user.phone)
+    I.fillField(this.passwordField, user.password)
+    I.fillField(this.passwordConfirmField, user.password)
   },
   
   confirmPrivacy() {
-    I.click(this.confirmPrivacyControl);
+    I.click(this.confirmPrivacyControl)
   }
 }
