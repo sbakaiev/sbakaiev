@@ -32,6 +32,7 @@ Data(products.filter(product => !product.url.includes('45')))
             return;
         }
         await checkoutPage.doCompleteCheckoutSteps()
+        I.wait(1)
         const shippingRate = await checkoutPage.doGetShippingRate()
         const totalPrice = await checkoutPage.doGetTotal()
         output.print('Total price in UAH: ' + await checkoutPage.doConvertToUah(totalPrice))
