@@ -18,12 +18,20 @@ exports.config = {
       url: 'http://opencart.qatestlab.net/index.php',
       show: true,
       browser: 'chromium'
+    },
+    Transform: {
+      require: './helpers/transform_helper.js',
+    },
+    ChaiWrapper: {
+      "require": "codeceptjs-chai"
     }
   },
   include: {
     I: './steps_file.js',
     basePage: "./pages/base.js",
-    registerPage: "./pages/register.js"
+    registerPage: "./pages/register.js",
+    productPage: "./pages/product.js",
+    checkoutPage: "./pages/checkout.js"
   },
   name: 'sbakaiev'
 }
