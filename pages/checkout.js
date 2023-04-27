@@ -1,4 +1,6 @@
 const { I } = inject()
+const output = require('codeceptjs').output
+const Converter = require("../helpers/converter")
 
 module.exports = {
   estimateShipping: { xpath: '//*/a[@href="#collapse-shipping"]' },
@@ -7,7 +9,15 @@ module.exports = {
   cart: '//*[@id="cart"]/button',
   cartProducts: { xpath: '//*[@id="cart"]/ul/li[@class="product"]' },
   cleanCart: { xpath: '//li[@class="product"][1]//button[2]' },
-  usdRate: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&json',
+  billing: {
+    firstName: {xpath: '//*[@id="input-payment-firstname"]'},
+    lastName: {xpath: '//*[@id="input-payment-lastname"]'},
+    address1: {xpath: '//*[@id="input-payment-address-1"]'},
+    city: {xpath: '//*[@id="input-payment-city"]'},
+    postcode: {xpath: '//*[@id="input-payment-postcode"]'},
+    country: {xpath: '//*[@id="input-payment-country"]'},
+    state: {xpath: '//*[@id="input-payment-zone"]'},
+  },
   checkout: {
     paymentAddress: { xpath: '//*[@id="button-payment-address"]' },
     shippingAddress: { xpath: '//*[@id="button-shipping-address"]' },
@@ -27,11 +37,24 @@ module.exports = {
   },
 
   async doCompleteCheckoutSteps() {
+    await this.doFillBillingAddress()
     I.click(this.checkout.paymentAddress)
     I.click(this.checkout.shippingAddress)
     I.click(this.checkout.shippingMethod)
     I.click(this.checkout.confirmCheck)
     I.click(this.checkout.paymentMethod)
+  },
+
+  async doFillBillingAddress() {
+    if(await I.grabNumberOfVisibleElements(this.billing.firstName) > 0) {
+      I.fillField(this.billing.firstName, 'Tom')
+      I.fillField(this.billing.lastName, 'Rid')
+      I.fillField(this.billing.address1, 'street,  1')
+      I.fillField(this.billing.city, 'Mykolaiv')
+      I.fillField(this.billing.postcode, '54007')
+      I.selectOption(this.billing.country, 'Ukraine')
+      I.selectOption(this.billing.state, "Mykolayivs'ka Oblast'")
+    } 
   },
 
   async doGetTotal() {
@@ -55,10 +78,8 @@ module.exports = {
   },
 
   async doConvertToUah(price) {
-    const response = await I.sendGetRequest(this.usdRate)
-    I.seeResponseCodeIs(200)
-    const usdRate = response.data[0].rate
+    const priceInUah = await Converter.convertToUah(price)
 
-    return price * usdRate;
+    output.print(`Total price in UAH: ${priceInUah}`)
   }
 }
