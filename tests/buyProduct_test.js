@@ -14,11 +14,10 @@ const productsFromFile = FilerReader.readFileContent().split(/\r\n/g);
 productsFromFile.forEach(url => products.add([url]));
 
 Before(({ I }) => {
-    I.openStore()
     I.login(USER)
 })
 
-Data(products.filter(product => !product.url.includes('45')))
+Data(products)
     .Scenario('test buying product', async ({ I, productPage, checkoutPage, current }) => {
         await checkoutPage.doCleanCart()
         I.amOnPage(current.url)
@@ -32,10 +31,10 @@ Data(products.filter(product => !product.url.includes('45')))
             return;
         }
         await checkoutPage.doCompleteCheckoutSteps()
-        I.wait(1)
+        I.wait(2)
         const shippingRate = await checkoutPage.doGetShippingRate()
         const totalPrice = await checkoutPage.doGetTotal()
-        output.print('Total price in UAH: ' + await checkoutPage.doConvertToUah(totalPrice))
+        await checkoutPage.doConvertToUah(totalPrice)
         await I.assertEqual(shippingRate + price, totalPrice)
         checkoutPage.doConfirmOrder()
         I.see('Your order has been placed!')
